@@ -162,6 +162,77 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/07/09/c++/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="baozi">
+      <meta itemprop="description" content="The road is long, the running is continue.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="baozi's page">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/07/09/c++/" class="post-title-link" itemprop="url">c++</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-07-09 08:58:44 / 修改时间：14:57:14" itemprop="dateCreated datePublished" datetime="2024-07-09T08:58:44+08:00">2024-07-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/c/" itemprop="url" rel="index"><span itemprop="name">c++</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="const"><a href="#const" class="headerlink" title="const"></a>const</h2><p>const位于星号左侧，const用于修饰指针指向的变量；const位于星号右侧，const修饰指针本身</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> b = <span class="number">500</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span>* a = &amp;b; [<span class="number">1</span>]</span><br><span class="line"><span class="type">int</span> <span class="type">const</span> *a = &amp;b; [<span class="number">2</span>]</span><br><span class="line"><span class="type">int</span>* <span class="type">const</span> a = &amp;b; [<span class="number">3</span>]</span><br><span class="line"><span class="type">const</span> <span class="type">int</span>* <span class="type">const</span> a = &amp;b; [<span class="number">4</span>] </span><br></pre></td></tr></table></figure>
+
+<p>1和2const都位于星号左侧，修饰指针指向的变量，3中const位于星号右侧，此时指针本身是常量，指针指向的内容不是常量，4中指针本身和指针指向的内容均为常量</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2024/07/03/Untitled/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -887,112 +958,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/07/20/shell/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="baozi">
-      <meta itemprop="description" content="The road is long, the running is continue.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="baozi's page">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/07/20/shell/" class="post-title-link" itemprop="url">shell</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-07-20 14:24:50" itemprop="dateCreated datePublished" datetime="2023-07-20T14:24:50+08:00">2023-07-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-04 21:25:23" itemprop="dateModified" datetime="2024-06-04T21:25:23+08:00">2024-06-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/missing-semester/" itemprop="url" rel="index"><span itemprop="name">missing-semester</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>echo</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo [-neE] [ARGUMENTS]</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>当-n 选项，则取消尾随换行符</p>
-</li>
-<li><p>如果-e 选项，则将解释以下反斜杠转义字符:</p>
-<ul>
-<li><p>\ 显示反斜杠字符</p>
-</li>
-<li><p>\a 警报(BEL)</p>
-</li>
-<li><p>\b 显示退格字符</p>
-</li>
-<li><p>\c 禁止任何进一步的输出</p>
-</li>
-<li><p>\e 显示转义字符</p>
-</li>
-<li><p>\f 显示窗体提要字符</p>
-</li>
-<li><p>\n 显示新行</p>
-</li>
-<li><p>\r 显示回车</p>
-</li>
-<li><p>\t 显示水平标签</p>
-</li>
-<li><p>\v 显示垂直标签</p>
-</li>
-<li><p>这个-E 项禁用转义字符的解释。这是默认值</p>
-</li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1062,14 +1027,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
