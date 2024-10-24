@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="存储器概述 随机存储器（RAM），任何一个单元都可以随机存取，常用作主存和cache，断电后存储信息消失 只读存储器（ROM），只能随机读出而不能写入，广义的ROM已经可以写入，写入速度比读出速度慢，断电后存储信息不消失 主存和cache之间的数据调动是由硬件自动完成，对所有程序员时&#x3D;&#x3D;透明的&#x3D;&#x3D;，主存和辅存之间的数据调动是由硬件和操作系统共同完成的，对应用">
+<meta property="og:type" content="website">
+<meta property="og:title" content="baozi&#39;s page">
+<meta property="og:url" content="http://example.com/408_%E5%89%AF%E6%9C%AC/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/3%20%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F.html">
+<meta property="og:site_name" content="baozi&#39;s page">
+<meta property="og:description" content="存储器概述 随机存储器（RAM），任何一个单元都可以随机存取，常用作主存和cache，断电后存储信息消失 只读存储器（ROM），只能随机读出而不能写入，广义的ROM已经可以写入，写入速度比读出速度慢，断电后存储信息不消失 主存和cache之间的数据调动是由硬件自动完成，对所有程序员时&#x3D;&#x3D;透明的&#x3D;&#x3D;，主存和辅存之间的数据调动是由硬件和操作系统共同完成的，对应用">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-10-24T09:24:11.893Z">
+<meta property="article:modified_time" content="2024-10-15T10:54:06.609Z">
+<meta property="article:author" content="baozi">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/408_%E5%89%AF%E6%9C%AC/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/3%20%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title> | baozi's page
+</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">baozi's page</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+  
+  
+
+          <div class="content page posts-expand">
+            
+
+    
+    
+    
+    <div class="post-block" lang="zh-CN">
+      <header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">
+</h1>
+
+<div class="post-meta">
+  
+  <ul class="breadcrumb">
+          
+            <li><a href="/408_%E5%89%AF%E6%9C%AC/">408_副本</a></li>
+            <li><a href="/408_%E5%89%AF%E6%9C%AC/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a></li>
+            <li>3 存储系统</li>
+          
+  </ul>
+
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+          <h3 id="存储器概述"><a href="#存储器概述" class="headerlink" title="存储器概述"></a>存储器概述</h3><ul>
+<li>随机存储器（RAM），任何一个单元都可以随机存取，常用作主存和cache，断电后存储信息消失</li>
+<li>只读存储器（ROM），只能随机读出而不能写入，广义的ROM已经可以写入，写入速度比读出速度慢，断电后存储信息不消失</li>
+<li>主存和cache之间的数据调动是由硬件自动完成，对所有程序员时&#x3D;&#x3D;透明的&#x3D;&#x3D;，主存和辅存之间的数据调动是由硬件和操作系统共同完成的，对应用程序员是&#x3D;&#x3D;透明的&#x3D;&#x3D;</li>
+</ul>
+<h3 id="主存储器"><a href="#主存储器" class="headerlink" title="主存储器"></a>主存储器</h3><h4 id="SRAM和DRAM"><a href="#SRAM和DRAM" class="headerlink" title="SRAM和DRAM"></a>SRAM和DRAM</h4><ul>
+<li>主存储器由DRAM实现，cache由SRAM实现</li>
+<li>&#x3D;&#x3D;注意&#x3D;&#x3D;：主存由RAM和ROM实现，主要是由RAM</li>
+<li>DRAM和SRAM是易失性存储器，ROM是非易失性存储器</li>
+<li>SRAM是非破坏性读出，DRAM是破坏性读出</li>
+<li>SRAM的存储元是双稳态触发器（六晶体管MOS）存储信息</li>
+<li>DRAM用电荷存储新奇</li>
+<li>DRAM即使不断电信息也会自动消失，读后需要再生，有三种刷新方式<ul>
+<li>集中刷新，对存储器的所有行进行逐一再生，在此期间停止对存储器的读写操作，称为死时间，也称访存死区</li>
+<li>分散刷新，将存储器分为两部分，一部分正常使用，一部分刷新</li>
+<li>异步刷新，在一个刷新周期内每一行仅刷新一次</li>
+<li>&#x3D;&#x3D;只有分散刷新没有死时间&#x3D;&#x3D;</li>
+<li>![[截屏2024-09-29 17.17.37.png]]</li>
+</ul>
+</li>
+<li>SDRAM，同步DRAM，与CPU的数据交换同步于系统时钟</li>
+</ul>
+<h4 id="ROM"><a href="#ROM" class="headerlink" title="ROM"></a>ROM</h4><ul>
+<li>MROM，掩模式只读存储器，出厂时写入，写入后无法改变内容</li>
+<li>PROM，一次性编程只读存储器，写入后无法改变内容</li>
+<li>EPROM，可擦除可编程只读存储器，编程次数有限，写时间长</li>
+<li>FLASH，可在不加电的情况下长期存储信息，也可快速擦除和重写</li>
+<li>固态硬盘，用固态电子存储芯片阵列制成的硬盘，由控制单元和FLASH芯片组成</li>
+</ul>
+<h4 id="主存储器-1"><a href="#主存储器-1" class="headerlink" title="主存储器"></a>主存储器</h4><ul>
+<li>MDR的位数与数据线的位数相同，MAR的位数与地址线的位数相同</li>
+<li>DRAM地址位数多，为减少地址引脚数，采用地址引脚复用技术，行地址和列地址通过相同的引脚分两次送入（&#x3D;&#x3D;易错&#x3D;&#x3D;）</li>
+<li>DRAM行列优化原则，行列位数应尽可能相等，为了减少刷新开销，行位数应该小于列数</li>
+</ul>
+<h4 id="多模块存储器"><a href="#多模块存储器" class="headerlink" title="多模块存储器"></a>多模块存储器</h4><ul>
+<li>多模块存储器是一种空间并行技术，利用多个结构完全相同的存储模块的并行工作来提高存储器的吞吐率</li>
+<li>cpu速度比存储器块，同时从存储器中取出多条指令可以充分利用cpu</li>
+<li>分两种：<ul>
+<li>单体多字存储器，从同一地址一次并行读出m个指令，再将指令逐条送至cpu<ul>
+<li>缺点：只有指令和数据在主存中连续存放时效果才明显</li>
+</ul>
+</li>
+<li>多体并行存储器，由多体模块组成，每个模块由相同的容量和存取速度，各模块有独立的读写电路，多体并行存储器分两种<ul>
+<li>高位交叉编址</li>
+<li>![[截屏2024-09-30 15.10.51.png]]</li>
+<li>高位交叉编址模块内的地址是连续的，存取方式仍是&#x3D;&#x3D;顺序存取&#x3D;&#x3D;，这种存储区仍然是顺序存储器</li>
+<li>低位交叉编址</li>
+<li>![[截屏2024-09-30 15.16.53.png]]</li>
+<li>程序连续存放在相邻的模块中，称该存储器为交叉存储器</li>
+<li>交叉存储有两种启动方式，分别是轮流启动和同时启动</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="主存储器与CPU的连接"><a href="#主存储器与CPU的连接" class="headerlink" title="主存储器与CPU的连接"></a>主存储器与CPU的连接</h3><h4 id="主存容量的扩展"><a href="#主存容量的扩展" class="headerlink" title="主存容量的扩展"></a>主存容量的扩展</h4><ul>
+<li><p>位扩展</p>
+</li>
+<li><p>![[截屏2024-09-30 16.21.41.png]]</p>
+</li>
+<li><p>字扩展</p>
+</li>
+<li><p>![[截屏2024-09-30 16.22.08.png]]</p>
+</li>
+<li><p>字和位同时扩展</p>
+</li>
+<li><p>![[截屏2024-09-30 16.22.57.png]]</p>
+</li>
+</ul>
+<h4 id="存储芯片的地址分配"><a href="#存储芯片的地址分配" class="headerlink" title="存储芯片的地址分配"></a>存储芯片的地址分配</h4><ol>
+<li>线选法，地址线直接连接至各个存储芯片的片选端</li>
+<li>译码片选法，通过译码器产生片选信号</li>
+</ol>
+<h4 id="存储器与cpu的连接"><a href="#存储器与cpu的连接" class="headerlink" title="存储器与cpu的连接"></a>存储器与cpu的连接</h4><ol>
+<li>选择存储芯片<ul>
+<li>ROM存放系统程序、标准子程序和各类常数</li>
+<li>RAM为用户编程设置</li>
+</ul>
+</li>
+<li>地址线的连接<ul>
+<li>cpu的低位与存储芯片的地址线相连（线选），高位用与片选</li>
+</ul>
+</li>
+<li>数据线的连接，存储芯片与cpu的数据线数相同时可直接相连，不同时需要扩位</li>
+<li>读写命令线的连接，通常高电平为读，低电平为写</li>
+<li>片选线的连接，与MREQ有关</li>
+</ol>
+<h3 id="外部存储器"><a href="#外部存储器" class="headerlink" title="外部存储器"></a>外部存储器</h3><h4 id="磁盘存储器"><a href="#磁盘存储器" class="headerlink" title="磁盘存储器"></a>磁盘存储器</h4><p>磁盘存储器由磁盘驱动器、磁盘控制器和盘片组成</p>
+<ul>
+<li>磁盘驱动器，驱动盘片并转动在盘面上通过磁头进行读&#x2F;写操作的装置</li>
+<li>磁盘控制器，磁盘驱动器与主机的接口，负责接收并解释cpu发来的命令，向磁盘驱动器发出的各种控制信号，并负责检测磁盘驱动器的状态<br>![[截屏2024-10-02 16.36.16.png]]</li>
+<li>磁盘的存储能力受限于最内道道最大记录密度</li>
+<li>磁盘高速缓存（Disk Cache），在内存中开辟一部分区域，用于缓冲将被送到磁盘上的数据</li>
+<li>磁盘容量分为非格式化容量和格式化容量<ul>
+<li>非格式化容量是指磁记录表面可利用的磁化单元总数，记录面数 * 柱面数 * 每条磁道道磁化单元数</li>
+<li>格式化容量是指按照某种特定的记录格式能存储信息的容量，记录面数 * 柱面数 * 每道扇区数 * 每个扇区的容量</li>
+</ul>
+</li>
+<li>记录密度，指盘面单位面积上记录的二进制信息量，以道密度、位密度、面密度表示，道密度是指沿磁盘半径方向单位长度上的磁道数，位密度是磁道单位长度上能记录的二进制代码位数，面密度是位密度和道密度的乘积</li>
+<li>存取时间，由寻道时间，旋转延迟时间，传输时间三部分构成</li>
+<li>RAID，独立冗余磁盘阵列，是指将多个独立的物理磁盘组成一个独立的逻辑盘，数据在多个物理盘上 分割交叉存储、并行访问<ul>
+<li>RAID0:无冗余和无校验的磁盘阵列</li>
+<li>RAID1：镜像磁盘阵列</li>
+<li>RAID2:采用纠错的海明码的磁盘阵列</li>
+<li>RAID3:位交叉奇偶校验的磁盘阵列</li>
+<li>RAID4:块交叉奇偶校验的磁盘阵列</li>
+<li>RAID5:无独立校验的奇偶校验磁盘阵列</li>
+</ul>
+</li>
+<li>RAID1到RAID5几种方案中，无论何时有磁盘损坏，都可以随时拔出受损的磁盘再插入好的磁盘，数据不会损坏</li>
+</ul>
+<h4 id="固态硬盘"><a href="#固态硬盘" class="headerlink" title="固态硬盘"></a>固态硬盘</h4><p>![[截屏2024-10-02 17.37.40.png]]</p>
+<ul>
+<li>固态由一个或多个闪存芯片和闪存翻译层组成</li>
+<li>闪存芯片代替传统旋转磁盘中的机械驱动器，闪存翻译层代替磁盘控制器</li>
+<li>页所属的块整个被擦除后才能写这一页</li>
+<li>磨损均衡<ul>
+<li>动态磨损均衡，写入数据时，自动选择新的闪存块</li>
+<li>静态磨损均衡，没有数据写入，SSD也会自动监测并自动进行数据的读&#x2F;写操作，让老的闪存块承担无须写的存储任务，同时让较新的闪存块腾出新空间</li>
+</ul>
+</li>
+</ul>
+<h3 id="高速缓冲存储器"><a href="#高速缓冲存储器" class="headerlink" title="高速缓冲存储器"></a>高速缓冲存储器</h3><h4 id="cache的基本工作原理"><a href="#cache的基本工作原理" class="headerlink" title="cache的基本工作原理"></a>cache的基本工作原理</h4><ul>
+<li>cache和主存被划分为大小相等的块，cache块也称为cache行</li>
+<li>cpu与主存之间的数据交换以字为单位，cache与主存之间的数据交换以块为单位</li>
+</ul>
+<h4 id="cache和主存的映射方式"><a href="#cache和主存的映射方式" class="headerlink" title="cache和主存的映射方式"></a>cache和主存的映射方式</h4><ul>
+<li><p>直接映射</p>
+<ul>
+<li>主存中的每一块只能装入cache中的唯一位置，若这个位置已有内容，则产生冲突，原来的块被无条件换出</li>
+<li>直接映射的地址结构：标记+cache行号+行内地址</li>
+</ul>
+</li>
+<li><p>全相联映射</p>
+<ul>
+<li>主存的每一块可以装入cache的任何位置</li>
+<li>全相联的地址结构：标记+块内地址</li>
+</ul>
+</li>
+<li><p>组相联映射</p>
+<ul>
+<li>组间采用直接映射，组内采用全相联映射</li>
+<li>组相联的地址结构：标记+组号+块内地址</li>
+</ul>
+</li>
+</ul>
+<h4 id="cache的主存块的替换算法"><a href="#cache的主存块的替换算法" class="headerlink" title="cache的主存块的替换算法"></a>cache的主存块的替换算法</h4><ul>
+<li>直接相联无条件替换，不需要考虑替换算法</li>
+<li>常用的替换算法，有RAND，FIFO，LRU，LFU<ul>
+<li>RAND，随机算法，随机确定替换的cache行</li>
+<li>FIFO，先进先出算法，选择最早进入cache行进行替换</li>
+<li>LRU，近期最少使用算法，选择近期长久未访问的cache行进行替换</li>
+<li>LFU，将一段时间内访问次数最少的cache行换出</li>
+</ul>
+</li>
+</ul>
+<h4 id="cache的一致性"><a href="#cache的一致性" class="headerlink" title="cache的一致性"></a>cache的一致性</h4><ul>
+<li>对cache中的信息进行更新时，需要选用写策略使cache内容和主存内容保持一致</li>
+<li>对于cache写操作命中，有两种方式<ul>
+<li>全写法（直写法），cpu对cache写命中时，必须把数据同时写入cache和主存<ul>
+<li>cache和主存之间添加写缓冲区可以解决速度不匹配的问题</li>
+</ul>
+</li>
+<li>回写法，cpu对cache写命中时，只写入cache，当此块被替换时才写回主存<ul>
+<li>给每个cache行设置一个修改位（脏位），若修改位为1，则说明cache行中的块被修改过，需要写回主存</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>对cache写操作不命中，有两种处理方法<ul>
+<li>写分配法，更新主存单元，把这个主存块调入cache</li>
+<li>非写分配法，只更新主存单元，不把主存块调入cache<br>  非写分配法一般和全写法合用，写分配法和回写法合用</li>
+</ul>
+</li>
+</ul>
+<h3 id="虚拟存储器"><a href="#虚拟存储器" class="headerlink" title="虚拟存储器"></a>虚拟存储器</h3><ul>
+<li>虚拟存储器将主存或辅存的地址空间统一编址</li>
+<li>缺页访问辅存的代价大，所以虚拟存储器采用全相联映射</li>
+<li>进行写操作时，不能每次写操作都同时写回磁盘，所以采用回写法</li>
+</ul>
+<h4 id="页式虚拟存储器"><a href="#页式虚拟存储器" class="headerlink" title="页式虚拟存储器"></a>页式虚拟存储器</h4><ul>
+<li>页表式一张存放在主存的虚页号和实页号的对照表</li>
+<li>虚拟地址到物理地址到转换是由页表实现的</li>
+<li>每个进程都有一个页表基址寄存器，存放该进程的页表首地址</li>
+<li>缺页是地址转换时cpu监测的一种异常</li>
+<li>组相联映射下，虚拟页号的低位部分作为TLB组的组号</li>
+</ul>
+<h4 id="段式虚拟存储器"><a href="#段式虚拟存储器" class="headerlink" title="段式虚拟存储器"></a>段式虚拟存储器</h4><ul>
+<li>分段对程序员不透明</li>
+<li>分页对程序员透明</li>
+<li>容易留下碎片</li>
+</ul>
+<h4 id="段页式虚拟存储器"><a href="#段页式虚拟存储器" class="headerlink" title="段页式虚拟存储器"></a>段页式虚拟存储器</h4><ul>
+<li>把程序按逻辑结构分段，每段再划分为固定大小的页</li>
+</ul>
+
+      </div>
+      
+      
+      
+    </div>
+    
+  <ul class="breadcrumb">
+          
+            <li><a href="/408_%E5%89%AF%E6%9C%AC/">408_副本</a></li>
+            <li><a href="/408_%E5%89%AF%E6%9C%AC/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a></li>
+            <li>3 存储系统</li>
+          
+  </ul>
+
+    
+    
+    
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E5%99%A8%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">存储器概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E5%AD%98%E5%82%A8%E5%99%A8"><span class="nav-number">2.</span> <span class="nav-text">主存储器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SRAM%E5%92%8CDRAM"><span class="nav-number">2.1.</span> <span class="nav-text">SRAM和DRAM</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ROM"><span class="nav-number">2.2.</span> <span class="nav-text">ROM</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BB%E5%AD%98%E5%82%A8%E5%99%A8-1"><span class="nav-number">2.3.</span> <span class="nav-text">主存储器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E6%A8%A1%E5%9D%97%E5%AD%98%E5%82%A8%E5%99%A8"><span class="nav-number">2.4.</span> <span class="nav-text">多模块存储器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E5%AD%98%E5%82%A8%E5%99%A8%E4%B8%8ECPU%E7%9A%84%E8%BF%9E%E6%8E%A5"><span class="nav-number">3.</span> <span class="nav-text">主存储器与CPU的连接</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BB%E5%AD%98%E5%AE%B9%E9%87%8F%E7%9A%84%E6%89%A9%E5%B1%95"><span class="nav-number">3.1.</span> <span class="nav-text">主存容量的扩展</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E8%8A%AF%E7%89%87%E7%9A%84%E5%9C%B0%E5%9D%80%E5%88%86%E9%85%8D"><span class="nav-number">3.2.</span> <span class="nav-text">存储芯片的地址分配</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E5%99%A8%E4%B8%8Ecpu%E7%9A%84%E8%BF%9E%E6%8E%A5"><span class="nav-number">3.3.</span> <span class="nav-text">存储器与cpu的连接</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%96%E9%83%A8%E5%AD%98%E5%82%A8%E5%99%A8"><span class="nav-number">4.</span> <span class="nav-text">外部存储器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A3%81%E7%9B%98%E5%AD%98%E5%82%A8%E5%99%A8"><span class="nav-number">4.1.</span> <span class="nav-text">磁盘存储器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%BA%E6%80%81%E7%A1%AC%E7%9B%98"><span class="nav-number">4.2.</span> <span class="nav-text">固态硬盘</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AB%98%E9%80%9F%E7%BC%93%E5%86%B2%E5%AD%98%E5%82%A8%E5%99%A8"><span class="nav-number">5.</span> <span class="nav-text">高速缓冲存储器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#cache%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">5.1.</span> <span class="nav-text">cache的基本工作原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cache%E5%92%8C%E4%B8%BB%E5%AD%98%E7%9A%84%E6%98%A0%E5%B0%84%E6%96%B9%E5%BC%8F"><span class="nav-number">5.2.</span> <span class="nav-text">cache和主存的映射方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cache%E7%9A%84%E4%B8%BB%E5%AD%98%E5%9D%97%E7%9A%84%E6%9B%BF%E6%8D%A2%E7%AE%97%E6%B3%95"><span class="nav-number">5.3.</span> <span class="nav-text">cache的主存块的替换算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cache%E7%9A%84%E4%B8%80%E8%87%B4%E6%80%A7"><span class="nav-number">5.4.</span> <span class="nav-text">cache的一致性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E5%99%A8"><span class="nav-number">6.</span> <span class="nav-text">虚拟存储器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A1%B5%E5%BC%8F%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E5%99%A8"><span class="nav-number">6.1.</span> <span class="nav-text">页式虚拟存储器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AE%B5%E5%BC%8F%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E5%99%A8"><span class="nav-number">6.2.</span> <span class="nav-text">段式虚拟存储器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AE%B5%E9%A1%B5%E5%BC%8F%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E5%99%A8"><span class="nav-number">6.3.</span> <span class="nav-text">段页式虚拟存储器</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">baozi</p>
+  <div class="site-description" itemprop="description">The road is long, the running is continue.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/baoziq" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;baoziq" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:caz69021@gmail.com" title="E-Mail → mailto:caz69021@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2023-04 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">baozi</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
