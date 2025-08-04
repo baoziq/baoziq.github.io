@@ -162,6 +162,155 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/07/28/nginx/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="baozi">
+      <meta itemprop="description" content="The road is long, the running is continue.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="baozi's page">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/07/28/nginx/" class="post-title-link" itemprop="url">nginx</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-07-28 15:03:23" itemprop="dateCreated datePublished" datetime="2025-07-28T15:03:23+08:00">2025-07-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-07-29 09:59:26" itemprop="dateModified" datetime="2025-07-29T09:59:26+08:00">2025-07-29</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">        <span class="attribute">listen</span> <span class="number">8080</span>;</span><br><span class="line"></span><br><span class="line">        <span class="section">location</span> /foo &#123;</span><br><span class="line">            <span class="attribute">echo</span> <span class="string">&quot;foo = [<span class="variable">$foo</span>]&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="section">location</span> /bar &#123;</span><br><span class="line">            <span class="attribute">set</span> <span class="variable">$foo</span> <span class="number">32</span>;</span><br><span class="line">            <span class="attribute">echo</span> <span class="string">&quot;foo = [<span class="variable">$foo</span>]&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">   &#125;</span><br><span class="line">$ <span class="attribute">curl</span> <span class="string">&#x27;http://localhost:8080/foo&#x27;</span></span><br><span class="line">foo = []</span><br><span class="line"></span><br><span class="line">$ curl <span class="string">&#x27;http://localhost:8080/bar&#x27;</span></span><br><span class="line">foo = [<span class="number">32</span>]</span><br><span class="line"></span><br><span class="line">$ curl <span class="string">&#x27;http://localhost:8080/foo&#x27;</span></span><br><span class="line">foo = []</span><br></pre></td></tr></table></figure>
+
+<p>Nginx 变量一旦创建，其变量名的可见范围就是整个 Nginx 配置，甚至可以跨越不同虚拟主机的 <code>server</code> 配置块，但是赋值操作在bar中实现，foo中的foo为空</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">    <span class="attribute">server_name</span> www.example.com;</span><br><span class="line"></span><br><span class="line">    <span class="section">location</span> /api/ &#123;</span><br><span class="line">        <span class="attribute">proxy_pass</span> http://backend_api;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="section">location</span> /static/ &#123;</span><br><span class="line">        <span class="attribute">root</span> /var/www/html;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="section">location</span> /admin &#123;</span><br><span class="line">        <span class="attribute">return</span> <span class="number">403</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># server的作用是匹配域名和端口号，location的作用是匹配路径</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">map</span> <span class="variable">$args</span> <span class="variable">$foo</span> &#123;</span><br><span class="line">        <span class="attribute">default</span>     <span class="number">0</span>;</span><br><span class="line">        <span class="attribute">debug</span>       <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># map为映射，args为自变量，foo为因变量，第一列为args的值，第二列卫foo对应的值，default类似于switch case中的default，当其他条件都不满足时，foo为0</span></span><br><span class="line"><span class="comment"># 注意： map不能在server中，与server是并列关系</span></span><br><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">        <span class="attribute">listen</span> <span class="number">8080</span>;</span><br><span class="line"></span><br><span class="line">        <span class="section">location</span> /test &#123;</span><br><span class="line">            <span class="attribute">set</span> <span class="variable">$orig_foo</span> <span class="variable">$foo</span>;</span><br><span class="line">            <span class="attribute">set</span> <span class="variable">$args</span> <span class="literal">debug</span>;</span><br><span class="line"></span><br><span class="line">            <span class="attribute">echo</span> <span class="string">&quot;original foo: <span class="variable">$orig_foo</span>&quot;</span>;</span><br><span class="line">            <span class="attribute">echo</span> <span class="string">&quot;foo: <span class="variable">$foo</span>&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># $ curl &#x27;http://localhost:8080/test&#x27;</span></span><br><span class="line"><span class="comment">#   original foo: 0</span></span><br><span class="line"><span class="comment">#   foo: 0</span></span><br><span class="line"><span class="comment"># 原因：$foo 变量在第一次读取时，根据映射规则计算出的值被缓存住了</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># nginx有11个阶段 postread -&gt; server_rewrite -&gt; find_config -&gt; rewrite -&gt; post_rewrite -&gt; preaccess -&gt; access -&gt; postaccess -&gt; precontent -&gt; content -&gt; log</span></span><br><span class="line"><span class="section">location</span> /test &#123;</span><br><span class="line">  <span class="attribute">set</span> <span class="variable">$a</span> <span class="number">32</span>;</span><br><span class="line">  <span class="attribute">echo</span> <span class="variable">$a</span>;</span><br><span class="line">  <span class="attribute">set</span> <span class="variable">$a</span> <span class="number">50</span>;</span><br><span class="line">  <span class="attribute">echo</span> <span class="variable">$a</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># 输出结果为 50 50 </span></span><br><span class="line"><span class="comment"># set输入rewrite；echo属于content，所有set都在echo之前执行</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/07/24/lua/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="baozi">
+      <meta itemprop="description" content="The road is long, the running is continue.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="baozi's page">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/07/24/lua/" class="post-title-link" itemprop="url">lua的使用</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-07-24 13:53:42" itemprop="dateCreated datePublished" datetime="2025-07-24T13:53:42+08:00">2025-07-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-07-28 10:22:50" itemprop="dateModified" datetime="2025-07-28T10:22:50+08:00">2025-07-28</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;2&quot;</span> + <span class="number">8</span>)</span><br><span class="line"><span class="comment">-- 输出结果为10， 类型为number，lua中只有number这一种数字类型</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 字符串连接</span></span><br><span class="line">str = <span class="number">123</span> .. <span class="number">456</span></span><br><span class="line"><span class="comment">-- 输出结果为123456，类型为string</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 获取字符串长度</span></span><br><span class="line">str = <span class="string">&quot;this is a test.&quot;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(str))</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> x = <span class="number">10</span>	<span class="comment">-- 局部变量</span></span><br><span class="line">x = <span class="number">10</span> <span class="comment">-- 全局变量</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- lua中的函数可以当作变量</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial1</span><span class="params">(n)</span></span> </span><br><span class="line">  <span class="keyword">if</span> n == <span class="number">0</span> <span class="keyword">then</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">  <span class="keyword">else</span> </span><br><span class="line">    <span class="keyword">return</span> n * factorial1(n - <span class="number">1</span>)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">print</span>(factorial1(<span class="number">10</span>))</span><br><span class="line">factorial2 = factorial1;</span><br><span class="line"><span class="built_in">print</span>(factorial2(<span class="number">10</span>))</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- if ip is true return ip, if ip is nil return &quot;unknow&quot;</span></span><br><span class="line"><span class="keyword">return</span> ip <span class="keyword">or</span> unknow</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/18/effective-C++/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -193,7 +342,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-05-20 17:03:14" itemprop="dateModified" datetime="2025-05-20T17:03:14+08:00">2025-05-20</time>
+                <time title="修改时间：2025-05-23 17:22:51" itemprop="dateModified" datetime="2025-05-23T17:22:51+08:00">2025-05-23</time>
               </span>
 
           
@@ -207,11 +356,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="view-c-as-a-federation-of-languages"><a href="#view-c-as-a-federation-of-languages" class="headerlink" title="view c++ as a federation of languages"></a>view c++ as a federation of languages</h3><h4 id="c"><a href="#c" class="headerlink" title="c"></a>c</h4><p>pass by value比pass by reference更高效，c中的引用实质上还是指针</p>
+          <h3 id="1-view-c-as-a-federation-of-languages"><a href="#1-view-c-as-a-federation-of-languages" class="headerlink" title="1 view c++ as a federation of languages"></a>1 view c++ as a federation of languages</h3><h4 id="c"><a href="#c" class="headerlink" title="c"></a>c</h4><p>pass by value比pass by reference更高效，c中的引用实质上还是指针</p>
 <h4 id="object-oriented-c"><a href="#object-oriented-c" class="headerlink" title="object-oriented c++"></a>object-oriented c++</h4><p>有构造函数和析构函数存在，传值会调用拷贝构造函数和析构函数</p>
 <h4 id="template-c"><a href="#template-c" class="headerlink" title="template c++"></a>template c++</h4><p>pass by reference 更高效，在使用模版时，并不知道是什么类型，使用reference不用拷贝</p>
 <p>pass by reference-to-const</p>
-<h4 id="STL"><a href="#STL" class="headerlink" title="STL"></a>STL</h4><h3 id="prefer-const-enum-inline-to-define"><a href="#prefer-const-enum-inline-to-define" class="headerlink" title="prefer const enum inline to define"></a>prefer const enum inline to define</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> PI 3.14</span></span><br><span class="line"><span class="type">const</span> pi =<span class="number">3.142</span> </span><br></pre></td></tr></table></figure>
+<h4 id="STL"><a href="#STL" class="headerlink" title="STL"></a>STL</h4><h3 id="2-prefer-const-enum-inline-to-define"><a href="#2-prefer-const-enum-inline-to-define" class="headerlink" title="2 prefer const enum inline to define"></a>2 prefer const enum inline to define</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> PI 3.14</span></span><br><span class="line"><span class="type">const</span> pi =<span class="number">3.142</span> </span><br></pre></td></tr></table></figure>
 
 <p>const 比define更好</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">foo</span>&#123;</span><br><span class="line">  <span class="keyword">private</span>:</span><br><span class="line">  	<span class="type">static</span> <span class="type">const</span> <span class="type">int</span> num = <span class="number">5</span>;</span><br><span class="line">  	<span class="type">int</span> score[num];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -221,15 +370,18 @@
 
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">foo</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="type">static</span> <span class="type">const</span> <span class="type">int</span> num;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> foo::num = <span class="number">5</span>;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">const</span> <span class="type">int</span>* p = &amp;foo::num;</span><br><span class="line">    std::cout &lt;&lt; *p &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p>如果不在类外给出定义式，在类外访问num的地址会出现错误，原因是并没有给num分配地址</p>
+<p>如果不在类外给出定义式，在类外访问num的地址会出现错误，原因是并没有给num分配内存</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">foo</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="type">static</span> <span class="type">const</span> <span class="type">int</span> num = <span class="number">9</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 <p>也没分配地址，所以要在外面给出定义式，在类中仅仅只是声明式</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">foo</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="type">static</span> <span class="type">const</span> <span class="type">int</span> num = <span class="number">5</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    std::cout &lt;&lt; foo::num &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>像这样，虽然能够输出num的值，但是并没有给num分配内存，仅仅只是替换成5</p>
 <p>也可以这样写</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">foo</span>&#123;</span><br><span class="line">  <span class="keyword">private</span>:</span><br><span class="line">  	<span class="keyword">enum</span> &#123;num = <span class="number">5</span>&#125;;</span><br><span class="line">  	<span class="type">int</span> score[num];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>使用<code>inline</code>替换’#define’</p>
-<h3 id="use-const-whenever-possible"><a href="#use-const-whenever-possible" class="headerlink" title="use const whenever possible"></a>use const whenever possible</h3>
+<h3 id="3-use-const-whenever-possible"><a href="#3-use-const-whenever-possible" class="headerlink" title="3 use const whenever possible"></a>3 use const whenever possible</h3>
       
     </div>
 
@@ -279,7 +431,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-05 23:40:38" itemprop="dateModified" datetime="2025-03-05T23:40:38+08:00">2025-03-05</time>
+                <time title="修改时间：2025-07-23 15:20:20" itemprop="dateModified" datetime="2025-07-23T15:20:20+08:00">2025-07-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -303,6 +455,14 @@
 
       
           <h3 id="查看当前分支"><a href="#查看当前分支" class="headerlink" title="查看当前分支"></a>查看当前分支</h3><p><code>git branch -- show-current</code></p>
+<h3 id="回退到上一个版本"><a href="#回退到上一个版本" class="headerlink" title="回退到上一个版本"></a>回退到上一个版本</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard HEAD~1</span><br></pre></td></tr></table></figure>
+
+<h3 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rm filename</span><br></pre></td></tr></table></figure>
+
+<h3 id="删除分支"><a href="#删除分支" class="headerlink" title="删除分支"></a>删除分支</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -d branch_name</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建新分支"><a href="#创建新分支" class="headerlink" title="创建新分支"></a>创建新分支</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b branch_name</span><br><span class="line">git switch -c branch_name</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -729,7 +889,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-05-05 19:34:55" itemprop="dateModified" datetime="2025-05-05T19:34:55+08:00">2025-05-05</time>
+                <time title="修改时间：2025-07-31 22:08:28" itemprop="dateModified" datetime="2025-07-31T22:08:28+08:00">2025-07-31</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -758,7 +918,18 @@
 <p>1和2是等价的，都表示指向常量的指针，3表示指针本身不可变，但是指向的内容可变</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a = <span class="number">10</span>;</span><br><span class="line"><span class="type">int</span>* <span class="type">const</span> p = &amp;a;</span><br><span class="line">*p = <span class="number">20</span>; <span class="comment">//合法</span></span><br><span class="line"><span class="type">int</span> b = <span class="number">20</span>;</span><br><span class="line">p = &amp;b;	<span class="comment">//不合法，Cannot assign to readonly type int * const</span></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a</span><br></pre></td></tr></table></figure>
+<p>const int 必须用const int * p来指向</p>
+<p>int* const p必须初始化</p>
+<p>顶层const(top-level const)表示指针本身是一个常量，底层const(low-level const)表示指针所指的对象是一个常量，更一般的，顶层const可以表示任意的对象是常量</p>
+<p>constexpr修饰指针，constexpr仅对指针有效</p>
+<p>函数体外定义的变量存放在固定地址，函数体外的变量则不是，constexpr指针和引用只能用于函数体外的变量</p>
+<h3 id="constexpr"><a href="#constexpr" class="headerlink" title="constexpr"></a>constexpr</h3><p>常量表达式(const expression)是指值不会改变并且在编译阶段就会得到计算结果的表达式</p>
+<p>将变量声明为<code>constexpr</code>类型，由编译器来验证变量的值是否为常量表达式</p>
+<p>自定义类、IO库、string类型不能被定义为constexpr</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">constexpr</span> std::string str = <span class="string">&quot;abc&quot;</span>;</span><br><span class="line">std::cout &lt;&lt; str &lt;&lt; std::endl;</span><br><span class="line"><span class="comment">// error: constexpr variable cannot have non-literal type &#x27;const std::string&#x27; (aka &#x27;const basic_string&lt;char&gt;&#x27;)</span></span><br></pre></td></tr></table></figure>
+
+<p>constexpr指针初值必须是nullptr或0</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> num = <span class="number">20</span>;</span><br><span class="line"><span class="keyword">constexpr</span> <span class="type">int</span>* p = &amp;num;</span><br><span class="line">std::cout &lt;&lt; *p &lt;&lt; std::endl;</span><br><span class="line"><span class="comment">// error: constexpr variable &#x27;p&#x27; must be initialized by a constant expression</span></span><br></pre></td></tr></table></figure>
 
 
 
@@ -792,7 +963,7 @@
 <h3 id="tolower-toupper"><a href="#tolower-toupper" class="headerlink" title="tolower, toupper"></a>tolower, toupper</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cctype&gt;</span></span></span><br><span class="line">string str = <span class="string">&quot;Hello World&quot;</span>;</span><br><span class="line">string res;</span><br><span class="line"><span class="keyword">for</span> (<span class="type">char</span> ch : str) &#123;</span><br><span class="line">  res += <span class="built_in">tolower</span>(ch); <span class="comment">//转为小写</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (<span class="type">char</span> ch : str) &#123;</span><br><span class="line">  res += <span class="built_in">toupper</span>(ch); <span class="comment">//转为大写</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 更简单的方法</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">char</span> ch : str) &#123;</span><br><span class="line">  ch ^= <span class="number">32</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// &#x27;A&#x27;(65) ⊕ 32 = &#x27;a&#x27;(97)</span></span><br><span class="line"><span class="comment">// &#x27;a&#x27;(97) ⊕ 32 = &#x27;A&#x27;(65)</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="unordered-map"><a href="#unordered-map" class="headerlink" title="unordered_map"></a>unordered_map</h3><p>哈希表</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 声明</span></span><br><span class="line">unordered_map&lt;<span class="type">char</span> ch, <span class="type">int</span> n&gt; my_map;</span><br><span class="line">my_map.<span class="built_in">insert</span>(&#123;<span class="string">&#x27;a&#x27;</span>, <span class="number">2</span>&#125;); 	<span class="comment">// 插入元素</span></span><br><span class="line">my_map[b] = <span class="number">1</span>; <span class="comment">// 如果键不存在会创建并初始化</span></span><br><span class="line"><span class="comment">// 遍历</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">const</span> <span class="keyword">auto</span>&amp; pair: my_map) &#123;</span><br><span class="line">  cout &lt;&lt; pair.first &lt;&lt; pait.second &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// find的用法</span></span><br><span class="line"><span class="keyword">auto</span> it = umap.<span class="built_in">find</span>(<span class="string">&quot;a&quot;</span>);</span><br><span class="line"><span class="keyword">if</span> (it != umap.<span class="built_in">end</span>()) &#123;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Found: &quot;</span> &lt;&lt; it-&gt;first &lt;&lt; <span class="string">&quot; -&gt; &quot;</span> &lt;&lt; it-&gt;second &lt;&lt; std::endl;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Not found!&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// count,返回键是否存在（0 或 1）</span></span><br><span class="line"><span class="keyword">if</span> (umap.<span class="built_in">count</span>(<span class="string">&quot;a&quot;</span>) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Key exists!&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 声明</span></span><br><span class="line">unordered_map&lt;<span class="type">char</span> ch, <span class="type">int</span> n&gt; my_map;</span><br><span class="line">my_map.<span class="built_in">insert</span>(&#123;<span class="string">&#x27;a&#x27;</span>, <span class="number">2</span>&#125;); 	<span class="comment">// 插入元素</span></span><br><span class="line">my_map[b] = <span class="number">1</span>; <span class="comment">// 如果键不存在会创建并初始化</span></span><br><span class="line"><span class="comment">// 遍历</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">const</span> <span class="keyword">auto</span>&amp; pair: my_map) &#123;</span><br><span class="line">  cout &lt;&lt; pair.first &lt;&lt; pait.second &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// find的用法</span></span><br><span class="line"><span class="keyword">auto</span> it = umap.<span class="built_in">find</span>(<span class="string">&quot;a&quot;</span>);</span><br><span class="line"><span class="keyword">if</span> (it != umap.<span class="built_in">end</span>()) &#123;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Found: &quot;</span> &lt;&lt; it-&gt;first &lt;&lt; <span class="string">&quot; -&gt; &quot;</span> &lt;&lt; it-&gt;second &lt;&lt; std::endl;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Not found!&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// count,返回键是否存在（0 或 1）</span></span><br><span class="line"><span class="keyword">if</span> (umap.<span class="built_in">count</span>(<span class="string">&quot;a&quot;</span>) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Key exists!&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 清除特定元素</span></span><br><span class="line">umap.<span class="built_in">erase</span>(target);</span><br><span class="line"><span class="comment">// 在滑动窗口题目中可以这样使用</span></span><br><span class="line"><span class="keyword">if</span> (--cnt[nums[i - k + <span class="number">1</span>]] == <span class="number">0</span>) &#123;</span><br><span class="line">	cnt.<span class="built_in">erase</span>(nums[i - k + <span class="number">1</span>]);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="sort"><a href="#sort" class="headerlink" title="sort"></a>sort</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//基础用法</span></span><br><span class="line">vector&lt;<span class="type">int</span>&gt; nums = &#123;<span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">4</span>&#125;;</span><br><span class="line"><span class="built_in">sort</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>());	<span class="comment">// 默认升序</span></span><br><span class="line"><span class="built_in">sort</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>(), std::<span class="built_in">greater</span>());	<span class="comment">//降序排列</span></span><br><span class="line"><span class="comment">// 自定义排序</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Student</span> &#123;</span><br><span class="line">    std::string name;</span><br><span class="line">    <span class="type">int</span> score;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 自定义排序规则</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">compareStudents</span><span class="params">(<span class="type">const</span> Student&amp; a, <span class="type">const</span> Student&amp; b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (a.score == b.score)  <span class="comment">// 分数相同，按姓名排序</span></span><br><span class="line">        <span class="keyword">return</span> a.name &lt; b.name;</span><br><span class="line">    <span class="keyword">return</span> a.score &gt; b.score; <span class="comment">// 分数降序</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
@@ -845,6 +1016,10 @@
 <h4 id="值捕获"><a href="#值捕获" class="headerlink" title="值捕获"></a>值捕获</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> x = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">auto</span> f  = [x] (<span class="type">int</span> y) -&gt; <span class="type">int</span> &#123;<span class="keyword">return</span> x + y;&#125;;</span><br><span class="line">x = <span class="number">20</span>;</span><br><span class="line">cout &lt;&lt; <span class="built_in">f</span>(<span class="number">5</span>) &lt;&lt; endl;	<span class="comment">//15</span></span><br></pre></td></tr></table></figure>
 
 <h4 id="引用捕获"><a href="#引用捕获" class="headerlink" title="引用捕获"></a>引用捕获</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> x = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">auto</span> f = [&amp;x] (<span class="type">int</span> y ) -&gt; <span class="type">int</span> &#123;<span class="keyword">return</span> x + y;&#125;;</span><br><span class="line">x = <span class="number">20</span>;</span><br><span class="line">cout &lt;&lt; <span class="built_in">f</span>(<span class="number">5</span>) &lt;&lt; endl;	<span class="comment">//25</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="类型别名"><a href="#类型别名" class="headerlink" title="类型别名"></a>类型别名</h3><h4 id="typedef"><a href="#typedef" class="headerlink" title="typedef"></a>typedef</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="type">double</span> wages;	<span class="comment">// wages是double的同义词</span></span><br><span class="line"><span class="keyword">typedef</span> wages base, *p;	<span class="comment">//base是double的同义词，p是double*的同义词</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="using"><a href="#using" class="headerlink" title="using"></a>using</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> SI = Sales_item;</span><br></pre></td></tr></table></figure>
 
 
       
@@ -985,180 +1160,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/04/13/Linux/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="baozi">
-      <meta itemprop="description" content="The road is long, the running is continue.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="baozi's page">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/04/13/Linux/" class="post-title-link" itemprop="url">Linux</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-04-13 18:58:48" itemprop="dateCreated datePublished" datetime="2024-04-13T18:58:48+08:00">2024-04-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-01-23 20:21:03" itemprop="dateModified" datetime="2025-01-23T20:21:03+08:00">2025-01-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="exit"><a href="#exit" class="headerlink" title="exit"></a>exit</h3><p>执行exit系统调用后，进程会从运行状态转为僵尸状态(zombie),操作系统会销毁当前进程，释放资源</p>
-<p><code>exit</code>是c标准库的函数，<code>_exit</code>是系统调用，直接终止进程，不进行清理工作</p>
-<p><code>僵尸进程</code>: 进程已经终止，但是父进程还未回收其状态信息</p>
-<h3 id="exec"><a href="#exec" class="headerlink" title="exec"></a>exec</h3><p>将当前进程的地址空间替换为新的程序，但保留当前进程的pid</p>
-<p>与<code>fork</code>配合使用，可以在子进程中运行一个新的程序</p>
-<h3 id="fork"><a href="#fork" class="headerlink" title="fork"></a>fork</h3><p>fork的作用是在当前进程下，创建一个新的进程，通常把这两个进程称为父进程和子进程，子进程的内存是复制父进程的，它们有独立的内存空间，fork在父进程中返回的值为子进程的pid，在子进程中返回的值为0,这就是为什么pid &#x3D;&#x3D; 0可以判断它是子进程</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> pid;</span><br><span class="line">pid = fork();</span><br><span class="line"><span class="keyword">if</span> (pid == <span class="number">0</span>) &#123;</span><br><span class="line">  std::cout &lt;&lt; <span class="string">&quot;this is child process&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  std::cout &lt;&lt; <span class="string">&quot;this is parent process&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>通过fork实现父子进程之间的读和写</p>
-<p> <code>read(fd[0], buf, sizeof(buf));</code></p>
-<p><code>write(fd[1], buf, sizeof(buf));</code></p>
-<p>注意：默认情况下读用0，写用1，管道是单方向的，要实现两端的读和写需要两个管道，buf是指向缓冲区的指针</p>
-<h3 id="wait"><a href="#wait" class="headerlink" title="wait"></a>wait</h3><p>用于让父进程等待子进程结束的系统调用</p>
-<h3 id="xargs"><a href="#xargs" class="headerlink" title="xargs"></a>xargs</h3><p>xargs的作用是读取标准输入，将其作为后面命令的参数</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> hello |xargs <span class="built_in">echo</span> <span class="built_in">bye</span></span><br></pre></td></tr></table></figure>
-
-<p>上述命令的输出为<code>bye hello</code></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/04/13/vim%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="baozi">
-      <meta itemprop="description" content="The road is long, the running is continue.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="baozi's page">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/04/13/vim%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">vim的使用方法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-04-13 18:26:16" itemprop="dateCreated datePublished" datetime="2024-04-13T18:26:16+08:00">2024-04-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-01-13 09:28:50" itemprop="dateModified" datetime="2025-01-13T09:28:50+08:00">2025-01-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vim/" itemprop="url" rel="index"><span itemprop="name">vim</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>进入insert模式</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">i: 在光标的位置插入</span><br><span class="line">a: 在光标后的位置插入</span><br><span class="line">o: 在当前的下一行插入 </span><br><span class="line">O：在当前的上一行插入</span><br></pre></td></tr></table></figure>
-
-<p>在insert模式下</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ctrl + h: 删除光标前面的字符 </span><br><span class="line">ctrl + w: 删除光标前面的单词</span><br><span class="line">ctrl + u: 删除光标前面的本行所有内容</span><br></pre></td></tr></table></figure>
-
-<p>在normal模式下</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">w: 移动到下一个单词的开头</span><br><span class="line">e: 移动到下一个单词的结尾</span><br><span class="line">b: 移动到上一个单词的开头</span><br><span class="line">f&#123;char&#125;: 移动到char上</span><br><span class="line">0: 移动到行首</span><br><span class="line">$: 移动到行尾</span><br><span class="line">gg: 移动到文件开头</span><br><span class="line">G: 移动到文件结尾</span><br><span class="line">ctrl + o: 快速返回</span><br><span class="line">ngg: 跳转到第n行</span><br><span class="line">x: 删除光标后的第一个字符</span><br><span class="line">daw: 删除光标所在的单词</span><br><span class="line">dw: 删除光标后面的单词</span><br><span class="line">diw: 删除光标所在的单词</span><br><span class="line">dt&#123;char&#125;: 删除从光标到char的所有内容</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gt：在vim不同标签之间切换</span><br><span class="line">ctrl + shift + t：新建终端标签页</span><br><span class="line">alt + 1/2/3/4：切换标签页</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1228,7 +1229,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
