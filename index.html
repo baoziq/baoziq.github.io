@@ -162,6 +162,63 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/09/02/Untitled/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="baozi">
+      <meta itemprop="description" content="The road is long, the running is continue.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="baozi's page">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/09/02/Untitled/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-09-02 20:04:16" itemprop="dateCreated datePublished" datetime="2025-09-02T20:04:16+08:00">2025-09-02</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2025/07/28/nginx/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -266,7 +323,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-07-28 10:22:50" itemprop="dateModified" datetime="2025-07-28T10:22:50+08:00">2025-07-28</time>
+                <time title="修改时间：2025-09-02 20:05:00" itemprop="dateModified" datetime="2025-09-02T20:05:00+08:00">2025-09-02</time>
               </span>
 
           
@@ -292,6 +349,12 @@
 
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- if ip is true return ip, if ip is nil return &quot;unknow&quot;</span></span><br><span class="line"><span class="keyword">return</span> ip <span class="keyword">or</span> unknow</span><br></pre></td></tr></table></figure>
 
+<h3 id="lua的八种数据类型"><a href="#lua的八种数据类型" class="headerlink" title="lua的八种数据类型"></a><code>lua</code>的八种数据类型</h3><p><code>nil</code>：空类型<br><code>boolean</code><br><code>number</code>:整数和浮点数都用number表示<br><code>string</code>：可以有三种表示方式</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">str1 = <span class="string">&#x27;this is test1&#x27;</span></span><br><span class="line">str2 = <span class="string">&quot;this ia test2&quot;</span></span><br><span class="line"><span class="comment">-- 第三种方式可以换行</span></span><br><span class="line">str3 = <span class="string">[[</span></span><br><span class="line"><span class="string">    this</span></span><br><span class="line"><span class="string">    is</span></span><br><span class="line"><span class="string">    test3</span></span><br><span class="line"><span class="string">]]</span></span><br></pre></td></tr></table></figure>
+<p><code>function</code>：function表示lua中的函数，可以接受多个参数，也可以用<code>...</code>表示可变数目的参数，function可以返回多个参数<br><code>userdata</code>：用户自定义数据<br><code>thread</code> – todo<br><code>table</code> 相当于数组，下标从1开始，里面的元素可以是各种类型的，函数也可以作为元素</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tb = &#123; </span><br><span class="line">        <span class="function"><span class="keyword">function</span><span class="params">()</span></span> <span class="keyword">return</span> <span class="string">&#x27;123&#x27;</span> <span class="keyword">end</span>,</span><br><span class="line">        fucntion() <span class="built_in">print</span>(<span class="string">&quot;abc) end,</span></span><br><span class="line"><span class="string">        function(a, b) return a + b end,</span></span><br><span class="line"><span class="string">    &#125;</span></span><br></pre></td></tr></table></figure>
+<p>table还可以当作哈希表</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">tb = &#123;</span><br><span class="line">    apple = <span class="number">3</span>,</span><br><span class="line">    banana = <span class="number">4</span>,</span><br><span class="line">    [<span class="string">&quot;tt&quot;</span>] = <span class="number">5</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">print</span>(tb[<span class="string">&quot;apple&quot;</span>])</span><br><span class="line"><span class="built_in">print</span>(tb.banana)</span><br><span class="line"><span class="built_in">print</span>(tb.[<span class="string">&quot;tt&quot;</span>])</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -431,7 +494,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-07-23 15:20:20" itemprop="dateModified" datetime="2025-07-23T15:20:20+08:00">2025-07-23</time>
+                <time title="修改时间：2025-08-19 21:24:07" itemprop="dateModified" datetime="2025-08-19T21:24:07+08:00">2025-08-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -462,6 +525,8 @@
 <h3 id="删除分支"><a href="#删除分支" class="headerlink" title="删除分支"></a>删除分支</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -d branch_name</span><br></pre></td></tr></table></figure>
 
 <h3 id="创建新分支"><a href="#创建新分支" class="headerlink" title="创建新分支"></a>创建新分支</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b branch_name</span><br><span class="line">git switch -c branch_name</span><br></pre></td></tr></table></figure>
+
+<h3 id="回退到clone后的版本"><a href="#回退到clone后的版本" class="headerlink" title="回退到clone后的版本"></a>回退到clone后的版本</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git restore .</span><br></pre></td></tr></table></figure>
 
 
       
@@ -596,7 +661,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-26 21:23:58" itemprop="dateModified" datetime="2025-03-26T21:23:58+08:00">2025-03-26</time>
+                <time title="修改时间：2025-08-21 19:42:01" itemprop="dateModified" datetime="2025-08-21T19:42:01+08:00">2025-08-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -662,7 +727,7 @@
 <p>长的合法，长的所有子串都合法，+ right - left + 1</p>
 <h4 id="恰好"><a href="#恰好" class="headerlink" title="恰好"></a>恰好</h4><p>例如，要计算有多少个元素和恰好等于 k 的子数组，可以把问题变成：</p>
 <p>计算有多少个元素和 ≥k 的子数组。<br>计算有多少个元素和 &gt;k，也就是 ≥k+1 的子数组。<br>答案就是元素和 ≥k 的子数组个数，减去元素和 ≥k+1 的子数组个数。这里把 &gt; 转换成 ≥，从而可以把滑窗逻辑封装成一个函数 f，然后用 f(k) - f(k + 1) 计算，无需编写两份滑窗代码。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">my_fun</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> goal)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> left = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> cur = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> right = <span class="number">0</span>; right &lt; nums.<span class="built_in">size</span>(); right++) &#123;</span><br><span class="line">            cur += nums[right];</span><br><span class="line">            <span class="keyword">while</span> (cur &gt;= goal &amp;&amp; left &lt;= right) &#123;</span><br><span class="line">                cur -= nums[left];</span><br><span class="line">                left++;</span><br><span class="line">            &#125;</span><br><span class="line">            res += left;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">numSubarraysWithSum</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> goal)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">my_fun</span>(nums, goal) - <span class="built_in">my_fun</span>(nums, goal + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">my_fun</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> goal)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> left = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> cur = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> right = <span class="number">0</span>; right &lt; nums.<span class="built_in">size</span>(); right++) &#123;</span><br><span class="line">            cur += nums[right];</span><br><span class="line">            <span class="keyword">while</span> (cur &gt;= goal &amp;&amp; left &lt;= right) &#123;</span><br><span class="line">                cur -= nums[left];</span><br><span class="line">                left++;</span><br><span class="line">            &#125;</span><br><span class="line">            res += left;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">numSubarraysWithSum</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> goal)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">my_fun</span>(nums, goal) - <span class="built_in">my_fun</span>(nums, goal + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="二分"><a href="#二分" class="headerlink" title="二分"></a>二分</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mid = left + (right - left) / <span class="number">2</span>; <span class="comment">//避免溢出</span></span><br></pre></td></tr></table></figure>
 
@@ -811,7 +876,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-03 15:40:46" itemprop="dateModified" datetime="2025-03-03T15:40:46+08:00">2025-03-03</time>
+                <time title="修改时间：2025-08-19 21:16:31" itemprop="dateModified" datetime="2025-08-19T21:16:31+08:00">2025-08-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -838,6 +903,9 @@
 <p>kex_exchange_identification: read: Connection reset by peer Connection reset by ::1 port 3316</p>
 <p>使用vscode链接docker后在终端输入以下命令</p>
 <figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service ssh restart</span><br></pre></td></tr></table></figure>
+
+<p>wsl中出现<code>AddressSanitizer:DEADLYSIGNAL</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo 0 | sudo tee /proc/sys/kernel/randomize_va_space</span><br></pre></td></tr></table></figure>
 
 
       
@@ -889,7 +957,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-08-13 21:11:03" itemprop="dateModified" datetime="2025-08-13T21:11:03+08:00">2025-08-13</time>
+                <time title="修改时间：2025-09-02 20:03:32" itemprop="dateModified" datetime="2025-09-02T20:03:32+08:00">2025-09-02</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1042,130 +1110,16 @@
 <li>指针和整数之间的转换</li>
 <li>非相关类型的转换</li>
 </ol>
+<h3 id="数组指针-todo，primer6-3"><a href="#数组指针-todo，primer6-3" class="headerlink" title="数组指针 todo，primer6.3"></a>数组指针 todo，primer6.3</h3><p>数组不能被拷贝，所以在函数中无法返回数组，但是可以返回数组的指针或引用<br>在写一个返回数组指针的函数时，可以用别名来声明</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="type">int</span> arrT[<span class="number">10</span>];   <span class="comment">// 为int[10]起一个别名</span></span><br><span class="line"><span class="keyword">using</span> arrT = <span class="type">int</span>[<span class="number">10</span>];   <span class="comment">// 等价上面</span></span><br><span class="line"><span class="comment">// 有了别名，可以定义返回数组指针的函数了</span></span><br><span class="line"><span class="function">arrT* <span class="title">function</span><span class="params">(<span class="type">int</span> n)</span></span>;  <span class="comment">//接受一个int类型的参数，返回一个指向包含十个int数组的指针</span></span><br></pre></td></tr></table></figure>
+<p>如果不想使用别名来声明函数，需要了解下面三个的区别</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> *arr[<span class="number">5</span>] = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;;  <span class="comment">// 声明了一个大小为5的数组</span></span><br><span class="line"><span class="type">int</span> *p1[<span class="number">5</span>]; <span class="comment">// 声明了一个包含5个指针的数组，它是一个指针数组，数组元素是指针</span></span><br><span class="line"><span class="built_in">int</span> (*p2)[<span class="number">5</span>] = &amp;arr;    <span class="comment">// 声明了一个指针，它指向arr</span></span><br></pre></td></tr></table></figure>
 
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/06/13/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="baozi">
-      <meta itemprop="description" content="The road is long, the running is continue.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="baozi's page">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/06/13/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80/" class="post-title-link" itemprop="url">NLP</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-06-13 21:05:32" itemprop="dateCreated datePublished" datetime="2024-06-13T21:05:32+08:00">2024-06-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-02-07 17:07:10" itemprop="dateModified" datetime="2025-02-07T17:07:10+08:00">2025-02-07</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/NLP/" itemprop="url" rel="index"><span itemprop="name">NLP</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="自然语言"><a href="#自然语言" class="headerlink" title="自然语言"></a>自然语言</h2><p>通常是指一种自然地随文化演化的语言。自然语言是人类交流和思维的主要工具，是人类智慧的结晶</p>
-<h2 id="自然语言处理"><a href="#自然语言处理" class="headerlink" title="自然语言处理"></a>自然语言处理</h2><p>是计算机科学领域与人工智能领域中一个重要的方向。它研究能实现人与计算机之间用自然语言进行有效通信的各种理论和方法</p>
-<h3 id="自然语言处理的层次"><a href="#自然语言处理的层次" class="headerlink" title="自然语言处理的层次"></a>自然语言处理的层次</h3><ol>
-<li>输入层</li>
-<li>文档层</li>
-<li>句法分析</li>
-<li>语义分析与篇章分析</li>
-<li>其他高级任务</li>
-</ol>
-<h3 id="自然语言处理的流派"><a href="#自然语言处理的流派" class="headerlink" title="自然语言处理的流派"></a>自然语言处理的流派</h3><ol>
-<li>基于规则</li>
-<li>基于统计</li>
-<li>深度学习</li>
-</ol>
-<h2 id="机器学习"><a href="#机器学习" class="headerlink" title="机器学习"></a>机器学习</h2><p>机器学习指的是计算机通过某项任务的经验数据提高了在这项任务上的能力</p>
-<p>机器学习是让机器学会算法的算法</p>
-<h2 id="语料库"><a href="#语料库" class="headerlink" title="语料库"></a>语料库</h2><p>语料库是指经科学取样和加工的大规模电子文本库</p>
-<h3 id="语料库的分类"><a href="#语料库的分类" class="headerlink" title="语料库的分类"></a>语料库的分类</h3><h4 id="中文分词语料库"><a href="#中文分词语料库" class="headerlink" title="中文分词语料库"></a>中文分词语料库</h4><p>由人工正确切分后的句子集合</p>
-<h4 id="词性标注语料库"><a href="#词性标注语料库" class="headerlink" title="词性标注语料库"></a>词性标注语料库</h4><p>切分并为每个词语制定一个磁性的语料</p>
-<h4 id="命名实体识别语料库"><a href="#命名实体识别语料库" class="headerlink" title="命名实体识别语料库"></a>命名实体识别语料库</h4><p>人工标注了文本内部制作者关心的实体名词以及实体类别</p>
-<h4 id="句法分析语料库"><a href="#句法分析语料库" class="headerlink" title="句法分析语料库"></a>句法分析语料库</h4><h4 id="文本分类语料库"><a href="#文本分类语料库" class="headerlink" title="文本分类语料库"></a>文本分类语料库</h4><h3 id="语料库建设"><a href="#语料库建设" class="headerlink" title="语料库建设"></a>语料库建设</h3><p>构建一份语料库的过程</p>
-<h2 id="语言模型（Language-Model）"><a href="#语言模型（Language-Model）" class="headerlink" title="语言模型（Language Model）"></a>语言模型（Language Model）</h2><p>语言模型是用来计算一个句子的概率的概率模型</p>
-<h3 id="语言模型的作用"><a href="#语言模型的作用" class="headerlink" title="语言模型的作用"></a>语言模型的作用</h3><ol>
-<li>决定哪一个词序列的可能性更大</li>
-<li>已知若干个词，预测下一个词</li>
-</ol>
-<h3 id="语言库模型的应用"><a href="#语言库模型的应用" class="headerlink" title="语言库模型的应用"></a>语言库模型的应用</h3><ol>
-<li>语音识别</li>
-<li>机器翻译</li>
-<li>上下文敏感的拼写检查</li>
-</ol>
-<h2 id="大语言模型"><a href="#大语言模型" class="headerlink" title="大语言模型"></a>大语言模型</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>是一种人工智能模型，旨在理解和生成人类语言。它们在大量的文本数据上进行训练，可以执行广泛的任务，包括文本总结、翻译、情感分析等。</p>
-<h2 id="序列标注问题"><a href="#序列标注问题" class="headerlink" title="序列标注问题"></a>序列标注问题</h2><p>序列标注指的是给定一个序列x&#x3D; x1 x2 x3 x4… 找出序列中每个元素对应的标签y &#x3D; y1 y2 y3 y4 ….的问题</p>
-<p>y所有可能的取值集合称为标注集</p>
-<h3 id="常见的序列标注方法"><a href="#常见的序列标注方法" class="headerlink" title="常见的序列标注方法"></a>常见的序列标注方法</h3><p>隐马尔可夫模型、条件随机场、深度学习模型</p>
-<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><p>指的是预测样本所属类别的问题</p>
-<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><ol>
-<li>文本分类</li>
-<li>关键词提取时，对文章中每个单词判断是否属于关键词</li>
-<li>在指代消解问题中，对每个代词和每个实体判断是否存在指代关系</li>
-<li>预测天气、照片对应哪种事物、声波是否由哪个人发出</li>
-</ol>
-<h2 id="聚类"><a href="#聚类" class="headerlink" title="聚类"></a>聚类</h2><h3 id="什么是聚类"><a href="#什么是聚类" class="headerlink" title="什么是聚类"></a>什么是聚类</h3><p>指的是将给定对象的集合划分为不同子集的过程</p>
-<h3 id="应用-1"><a href="#应用-1" class="headerlink" title="应用"></a>应用</h3><p>数据预处理</p>
-<p>排重</p>
-<p>大众化推荐</p>
-<p>人工抽查</p>
-<h2 id="N-gram语言模型"><a href="#N-gram语言模型" class="headerlink" title="N-gram语言模型"></a>N-gram语言模型</h2><p>更大的n：对下一个词出现的约束信息更多，更大的辨别力</p>
-<p>更小的n：在训练语料库中出现的次数更多，更可靠的统计结果，更高的可靠性</p>
-<h2 id="Transformer"><a href="#Transformer" class="headerlink" title="Transformer"></a>Transformer</h2><h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><p>Transformer是一种用于自然语言处理（NLP）和其他序列到序列（sequence-to-sequence）任务的深度学习模型架构。</p>
-<h3 id="Transformer模型是一种基于自注意力机制的神经网络模型"><a href="#Transformer模型是一种基于自注意力机制的神经网络模型" class="headerlink" title="Transformer模型是一种基于自注意力机制的神经网络模型"></a>Transformer模型是一种基于自注意力机制的神经网络模型</h3><h3 id="Transformer模型主要由两个部分组成：编码器和解码器"><a href="#Transformer模型主要由两个部分组成：编码器和解码器" class="headerlink" title="Transformer模型主要由两个部分组成：编码器和解码器"></a>Transformer模型主要由两个部分组成：编码器和解码器</h3><h3 id="序列到序列任务"><a href="#序列到序列任务" class="headerlink" title="序列到序列任务"></a>序列到序列任务</h3><p>序列到序列是指将一个序列转换为另一个序列到任务</p>
+<h3 id="deep-copy-and-shallow-copy"><a href="#deep-copy-and-shallow-copy" class="headerlink" title="deep copy and shallow copy"></a>deep copy and shallow copy</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Person</span> &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">int</span> age_;</span><br><span class="line">    string name_;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Person</span>(<span class="type">int</span> age, string name) : <span class="built_in">age_</span>(age), <span class="built_in">name_</span>(name);</span><br><span class="line">    <span class="comment">// 拷贝构造函数</span></span><br><span class="line">    <span class="built_in">Person</span>(<span class="type">const</span> Person&amp; person);</span><br><span class="line">   </span><br><span class="line">&#125;</span><br><span class="line">Person::<span class="built_in">Person</span>(<span class="type">const</span> Person&amp; person) &#123;</span><br><span class="line">    age_ = person.age_;</span><br><span class="line">    name_ = person.name_;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对于基本数据类型，浅复制可以实现，但是当类中有引用或者指针时，就需要用到深复制<br>在写拷贝构造函数的时候，必须将参数写成引用，一是引用可以避免拷贝，二是c++语法要求，否则，在传参的时候就会调用拷贝构造函数，进入无限循环<br>而且最好写成<code>const</code>类型，这样非<code>const</code>类型也可以传入</p>
+<h3 id="rvalue"><a href="#rvalue" class="headerlink" title="rvalue"></a>rvalue</h3><p><code>int a = 5</code>在这句代码中，a表示左值(<code>lvalue</code>)，5表示右值(<code>rvalue</code>)，左值表示在内存中可以找到它，右值在内存中找不到，<br>右值是一个立即数(<code>immediate number</code>)，</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a = <span class="number">20</span>; <span class="comment">// correct, a is a lvalue</span></span><br><span class="line"><span class="number">20</span> = <span class="number">30</span>;    <span class="comment">// incorrect, 20 is a rvalue</span></span><br><span class="line"><span class="type">int</span> &amp;lref = a; <span class="comment">// 左值引用</span></span><br><span class="line"><span class="type">int</span> &amp;&amp;rref = <span class="number">20</span>;    <span class="comment">//右值引用</span></span><br></pre></td></tr></table></figure>
+<p>在写函数的参数时，最好将参数定义为const引用类型，首先可以保证函数内部不会对参数做出修改，而且引用不会进行拷贝操作；其次，const引用可以传入右值引用，而非const的左值引用只能传入左值。例如，当传入的参数为具体的数字的时候，此时参数为右值，如果函数参数定义为const引用，可以传入，否则会出错</p>
 
       
     </div>
@@ -1250,7 +1204,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
